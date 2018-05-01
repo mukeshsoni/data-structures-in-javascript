@@ -25,15 +25,17 @@ function insertionSort(arr) {
  * @param {array} array
  */
 function shuffle(arr) {
+  let suffledArr = []
   let currentIndex = arr.length
   let temp, randomIndex
 
-  while (currentIndex >= 0) {
+  while (currentIndex > 0) {
     randomIndex = Math.floor(Math.random() * currentIndex)
 
-    temp = arr[currentIndex]
-    arr[currentIndex] = arr[randomIndex]
-    arr[randomIndex] - temp
+    randomIndex
+    temp = arr[currentIndex - 1]
+    arr[currentIndex - 1] = arr[randomIndex]
+    arr[randomIndex] = temp
     currentIndex--
   }
 
@@ -41,7 +43,8 @@ function shuffle(arr) {
 }
 function isSortedAscending(arr) {
   return arr.reduce(
-    (acc, item, index, orig) => (index > 0 ? item >= orig[index - 1] : true),
+    (acc, item, index, orig) =>
+      acc ? (index > 0 ? item >= orig[index - 1] : true) : false,
     true
   )
 }
@@ -53,14 +56,15 @@ function isSortedDescending(arr) {
   )
 }
 
-let a = range(0, 200)
-console.log(shuffle(a))
-let b = range(0, 18)
-b
-console.log(a.length)
+let a = range(0, 4)
+a
+let c = shuffle(a)
+c
 console.log(isSortedDescending([]))
 console.log(isSortedDescending([1]))
 console.log(isSortedAscending(a))
 console.log(isSortedDescending(a))
 console.log(insertionSort([4, 1, 2]))
-console.log(isSortedAscending(insertionSort(shuffle(a))))
+console.log(isSortedAscending(c))
+console.log(isSortedAscending(insertionSort(c)))
+console.log(isSortedDescending(insertionSort(c)))
