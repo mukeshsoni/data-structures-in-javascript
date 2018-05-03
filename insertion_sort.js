@@ -2,6 +2,18 @@ function range(start, end) {
   return Array.from({ length: end - start + 1 }, (_, i) => i + start)
 }
 
+function insertIntoSortedArray(arr, item) {
+  let j = arr.length - 1
+
+  while (item < arr[j] && j >= 0) {
+    arr[j + 1] = arr[j]
+    j--
+  }
+
+  arr[j + 1] = item
+  return arr
+}
+
 function insertionSort(arr) {
   let currentIndex = 0
   let sortedArray = []
@@ -18,18 +30,6 @@ function insertionSort(arr) {
   }
 
   return sortedArray
-}
-
-function insertIntoSortedArray(arr, item) {
-  let j = arr.length - 1
-
-  while (item < arr[j] && j >= 0) {
-    arr[j + 1] = arr[j]
-    j--
-  }
-
-  arr[j + 1] = item
-  return arr
 }
 
 /**
@@ -69,6 +69,7 @@ function shuffle(arr) {
 
   return arr
 }
+
 function isSortedAscending(arr) {
   return arr.reduce(
     (acc, item, index, orig) =>
