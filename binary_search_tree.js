@@ -55,20 +55,6 @@ class BinarySearchTree {
     return false
   }
 
-  inOrder() {
-    this._inOrder(this.root)
-  }
-
-  _inOrder(node) {
-    if (!node) {
-      return
-    }
-
-    console.log(node.value)
-    this._inOrder(node.left)
-    this._inOrder(node.right)
-  }
-
   preOrder() {
     this._preOrder(this.root)
   }
@@ -78,12 +64,26 @@ class BinarySearchTree {
       return
     }
 
+    console.log(node.value)
+    this._preOrder(node.left)
+    this._preOrder(node.right)
+  }
+
+  inOrder() {
+    this._inOrder(this.root)
+  }
+
+  _inOrder(node) {
+    if (!node) {
+      return
+    }
+
     if (node.left) {
-      this._preOrder(node.left)
+      this._inOrder(node.left)
     }
 
     console.log(node.value)
-    this._preOrder(node.right)
+    this._inOrder(node.right)
   }
 }
 
@@ -99,5 +99,5 @@ b.add(14)
 console.log(b.contains(14))
 console.log(b.contains(15))
 
-b.inOrder()
-b.preOrder() // equals to sorting the content in the binary tree
+b.preOrder()
+b.inOrder() // equals to sorting the content in the binary tree
