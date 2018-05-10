@@ -7,7 +7,8 @@ class BinarySearchTree {
     let node = {
       value,
       left: null,
-      right: null
+      right: null,
+      parent: null
     }
 
     if (this.root === null) {
@@ -20,6 +21,7 @@ class BinarySearchTree {
       if (value < current.value) {
         if (!current.left) {
           current.left = node
+          node.parent = current
           return
         }
 
@@ -27,6 +29,7 @@ class BinarySearchTree {
       } else if (value > current.value) {
         if (!current.right) {
           current.right = node
+          node.parent = current
           return
         }
 
@@ -37,6 +40,7 @@ class BinarySearchTree {
       }
     }
   }
+
   contains(value) {
     let current = this.root
 
@@ -78,6 +82,40 @@ class BinarySearchTree {
       this._inOrder(node.right)
     }
   }
+
+  mininum(node) {
+    let current = node || this.root
+
+    while (current.left) {
+      current = current.left
+    }
+
+    return current
+  }
+
+  maximum(node) {
+    let current = node || this.root
+
+    while (current.right) {
+      current = current.right
+    }
+
+    return current
+  }
+
+  successor(node) {
+    if (node.right) {
+      return this.mininum(node.right)
+    }
+
+    let y = node.parent
+    while (y !== null && y.right === node) {
+      node = y
+      y = y.parent
+    }
+
+    return y
+  }
 }
 
 let b = new BinarySearchTree()
@@ -94,3 +132,7 @@ console.log(b.contains(15))
 
 b.preOrder()
 b.inOrder() // equals to sorting the content in the binary tree
+
+console.log(b.mininum(b.root))
+console.log(b.maximum(b.root))
+console.log(b.successor(b.root.left))
