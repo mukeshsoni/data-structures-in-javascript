@@ -60,13 +60,11 @@ class BinarySearchTree {
   }
 
   _preOrder(node) {
-    if (!node) {
-      return
+    if (node) {
+      console.log(node.value)
+      this._preOrder(node.left)
+      this._preOrder(node.right)
     }
-
-    console.log(node.value)
-    this._preOrder(node.left)
-    this._preOrder(node.right)
   }
 
   inOrder() {
@@ -74,16 +72,11 @@ class BinarySearchTree {
   }
 
   _inOrder(node) {
-    if (!node) {
-      return
-    }
-
-    if (node.left) {
+    if (node) {
       this._inOrder(node.left)
+      console.log(node.value)
+      this._inOrder(node.right)
     }
-
-    console.log(node.value)
-    this._inOrder(node.right)
   }
 }
 
