@@ -123,16 +123,18 @@ let b = new BinarySearchTree()
 b.add(10)
 b
 b.add(2)
+b
+console.log(b.successor(b.root.left).value)
 b.add(20)
 b.add(1)
 b.add(14)
-// console.log(JSON.stringify(b))
+console.log(b)
 console.log(b.contains(14))
 console.log(b.contains(15))
 
 b.preOrder()
 b.inOrder() // equals to sorting the content in the binary tree
 
-console.log(b.mininum(b.root))
-console.log(b.maximum(b.root))
-console.log(b.successor(b.root.left))
+// console.log(b.mininum(b.root))
+// console.log(b.maximum(b.root))
+console.log(b.root.left.left.value, b.successor(b.root.left.left).value)
